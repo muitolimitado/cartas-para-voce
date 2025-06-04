@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartinhas para Você 💌</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', cursive;
+      background: #fff0f5;
+      color: #5d3a3a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+    }
+    .start-screen, .card-container {
+      display: none;
+    }
+    .start-screen.active, .card-container.active {
+      display: block;
+    }
+    .button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #fff;
+      margin-top: 20px;
+      transition: 0.3s ease;
+    }
+    .button:hover {
+      background-color: #ff99aa;
+    }
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin: auto;
+      max-width: 400px;
+      transition: opacity 0.5s ease;
+    }
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="start-screen active" id="start">
+      <h1>Oi, amor 💖</h1>
+      <p>Fiz isso com muito carinho pra você. É simples, mas vem direto do coração 💗</p>
+      <button class="button" onclick="startExperience()">Abrir Cartas</button>
+    </div>
+
+    <div class="card-container" id="cards">
+      <div class="card" id="card-text">Carregando...</div>
+      <button class="button" onclick="nextCard()">Próxima</button>
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "Só queria te lembrar do quanto você é incrível. Estar com você é como ter um pedaço de paz no meio do caos.",
+      "Eu amo o seu jeito, o seu sorriso, o seu carinho… cada pedacinho de você faz meu coração bater mais forte.",
+      "Às vezes eu paro e penso: como eu tive tanta sorte de te encontrar? E aí percebo... talvez o universo tenha me dado um presente — você.",
+      "Mesmo nos dias difíceis, só de lembrar do seu abraço, tudo fica mais leve. Você é o meu lugar seguro.",
+      "Eu não sei como vai ser o futuro, mas sei que quero ele com você. Sempre. 💖"
+    ];
+
+    let current = 0;
+
+    function startExperience() {
+      document.getElementById("start").classList.remove("active");
+      document.getElementById("cards").classList.add("active");
+      document.getElementById("card-text").textContent = messages[current];
+    }
+
+    function nextCard() {
+      current++;
+      if (current < messages.length) {
+        document.getElementById("card-text").textContent = messages[current];
+      } else {
+        document.getElementById("card-text").textContent = "Fim 💌 Obrigado por ser você. Eu te amo.";
+        event.target.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
